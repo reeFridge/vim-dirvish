@@ -426,10 +426,16 @@ function! s:open_dir(d, reload) abort
   endfor
 
   if -1 == bnr
-    execute 'silent' s:noswapfile 'keepalt edit' fnameescape(d._dir)
+    execute 'silent noau' s:noswapfile 'keepalt edit' fnameescape(d._dir)
   else
-    execute 'silent' s:noswapfile 'buffer' bnr
+    execute 'silent noau' s:noswapfile 'buffer' bnr
   endif
+
+  " if -1 == bnr
+  "  execute 'silent' s:noswapfile 'keepalt edit' fnameescape(d._dir)
+  " else
+  "  execute 'silent' s:noswapfile 'buffer' bnr
+  " endif
 
   " Use :file to force a normalized path.
   " - Avoids ".././..", ".", "./", etc. (breaks %:p, not updated on :cd).
